@@ -1,52 +1,58 @@
-import java.io._
-import java.math._
-import java.security._
-import java.text._
-import java.util._
-import java.util.concurrent._
-import java.util.function._
-import java.util.regex._
-import java.util.stream._
-import scala.collection.immutable._
-import scala.collection.mutable._
-import scala.collection.concurrent._
-import scala.concurrent._
-import scala.io._
-import scala.math._
-import scala.sys._
-import scala.util.matching._
-import scala.reflect._
-
-
-
-
-
-
     /*
-     * Complete the 'closedPaths' function below.
-     *
-     * The function is expected to return an INTEGER.
-     * The function accepts INTEGER number as parameter.
-     */
-
-    def closedPaths(number: Int): Int = {
-
-        var nums = number.toString
-        var sum:Int = 0
-
-        for(i <- nums) {
-            if(i == '0' || i == '4' || i == '6' || i == '9' ) {
-                sum += 1
-            }
-            else if (i == '8') {
-                sum += 2
-            }
-            else {
-                sum += 0
+    def countPairs(projectCosts: Array[Int], target: Int): Int = {
+    // Write your code here
+        //[recommend variable because value will change]
+        var countfinal = 0
+        for(x <- 0 until projectCosts.sorted.length) {
+            for(y <- 0 until projectCosts.sorted.length) {
+                if (projectCosts(x) - projectCosts(y) == target) {
+                    countfinal += 1
+                }
             }
         }
-            sum
-        
+     return countfinal
     }
-    
-    
+
+    def countPairs2(projectCosts: Array[Int], target: Int): Int = {
+        var proSort = projectCosts.sorted.distinct
+        var countFinal = 0
+        var a:Int = 0
+        var b:Int = 0
+            
+            while(b < proSort.length){
+                if(proSort(b) - proSort(a) == target) {
+                    countFinal += 1
+                    a += 1
+                    b += 1
+                }
+                
+                else if(proSort(b) - proSort(a) > target) {
+                    a += 1
+                }
+                else {
+                    b += 1
+                }
+                
+            }
+        return countFinal
+    }
+*/
+
+
+
+    def getTime(s: String): Long = {
+        
+        var l = s.length
+        var time = 0
+        var toLow = s.toLowerCase
+        var currentElem = 0
+
+        for (i <- 0 to l-1) {
+            var askin = toLow.charAt(i) - 97
+            var a = math.abs(currentElem - askin)
+            var b = 26 - a
+            currentElem = toLow.charAt(i) - 97 
+            time = time + math.min(a , b)    
+         }
+        return time
+    }
