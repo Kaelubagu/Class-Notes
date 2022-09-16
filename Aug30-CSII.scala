@@ -1,5 +1,5 @@
-/*
-Class review:
+
+
 
 class Account(val num:Int, var name:String, initBal:Int = 0) { //not a field, so you cannot talk about any of these outside of this function
 
